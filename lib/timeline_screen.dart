@@ -1,7 +1,14 @@
+import 'package:feeds_tutorial/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:stream_feed/stream_feed.dart';
 
 class TimelineScreen extends StatefulWidget {
-  const TimelineScreen({Key? key}) : super(key: key);
+  const TimelineScreen({
+    Key? key,
+    required this.streamUser,
+  }) : super(key: key);
+
+  final User streamUser;
 
   @override
   _TimelineScreenState createState() => _TimelineScreenState();

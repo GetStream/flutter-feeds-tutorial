@@ -30,7 +30,7 @@ class _HomeScreenState extends State<HomeScreen> {
       body: IndexedStack(
         index: _currentIndex,
         children: [
-          TimelineScreen(),
+          TimelineScreen(streamUser: widget.streamUser),
           ProfileScreen(streamUser: widget.streamUser),
           PeopleScreen(streamUser: widget.streamUser),
         ],
