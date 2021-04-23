@@ -18,9 +18,17 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   late final StreamClient _client;
+  bool _isLoading = true;
+
+  List<Activity> activities = <Activity>[];
 
   Future<void> _loadActivities({bool pullToRefresh = false}) async {
-    //TODO(awesome-developer): Implement load activities
+    if (!pullToRefresh) setState(() => _isLoading = true);
+
+    final userFeed = _client.flatFeed('user', widget.streamUser.id!);
+    final data = await userFeed.getActivities();
+    if (!pullToRefresh) _isLoading = false;
+    setState(() => activities = data);
   }
 
   @override
