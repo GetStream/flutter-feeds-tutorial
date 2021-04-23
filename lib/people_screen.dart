@@ -2,9 +2,15 @@ import 'package:feeds_tutorial/dummy_app_user.dart';
 import 'package:feeds_tutorial/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:stream_feed/stream_feed.dart';
 
 class PeopleScreen extends StatefulWidget {
-  const PeopleScreen({Key? key}) : super(key: key);
+  const PeopleScreen({
+    Key? key,
+    required this.streamUser,
+  }) : super(key: key);
+
+  final User streamUser;
 
   @override
   _PeopleScreenState createState() => _PeopleScreenState();
