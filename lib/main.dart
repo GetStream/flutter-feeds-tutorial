@@ -73,7 +73,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       /// Create a user on Stream using the id and dummy data
                       /// consisting of the user's first, last and full name.
                       /// See class [DummyAppUser] for more details.
-                      final _ = await _client.users.add(
+                      final _user = await _client.users.add(
                         user.id!,
                         user.data!,
                         getOrCreate: true,
@@ -83,7 +83,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (_) => HomeScreen(),
+                          builder: (_) => HomeScreen(streamUser: _user),
                         ),
                       );
                     },
