@@ -1,3 +1,4 @@
+import 'package:feeds_tutorial/activity_item.dart';
 import 'package:feeds_tutorial/utils/utils.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_feed/stream_feed.dart';
@@ -70,8 +71,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: Center(
         child: RefreshIndicator(
-            onRefresh: () => _loadActivities(pullToRefresh: true),
-            child: Text('No activities yet!')),
+          onRefresh: () => _loadActivities(pullToRefresh: true),
+          child: _isLoading
+              ? CircularProgressIndicator()
+              : activities.isEmpty
+                  ? Text('No activities yet!')
+                  : ListView.separated(
+                      itemCount: activities.length,
+                      padding: const EdgeInsets.symmetric(vertical: 16),
+                      separatorBuilder: (_, __) => const Divider(),
+                      itemBuilder: (_, index) {
+                        final activity = activities[index];
+                        return ActivityCard(activity: activity);
+                      },
+                    ),
+        ),
       ),
     );
   }
