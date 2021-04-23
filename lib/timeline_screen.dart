@@ -15,16 +15,22 @@ class TimelineScreen extends StatefulWidget {
 }
 
 class _TimelineScreenState extends State<TimelineScreen> {
+  late final StreamClient _client;
   bool _isLoading = true;
+  List<Activity> activities = <Activity>[];
 
   Future<void> _loadActivities({bool pullToRefresh = false}) async {
     if (!pullToRefresh) setState(() => _isLoading = true);
-    //TODO(awesome-developer): Implement load activities
+    final userFeed = _client.flatFeed('timeline', widget.streamUser.id!);
+    final data = await userFeed.getActivities();
+    if (!pullToRefresh) _isLoading = false;
+    setState(() => activities = data);
   }
 
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _client = context.client;
     _loadActivities();
   }
 
