@@ -43,7 +43,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
           if (message != null) {
             context.showSnackbar('Posting Activity...');
 
-            // TODO(awesome-developer): Implement posting
             final activity = Activity(
               actor: user.id,
               verb: 'tweet',
@@ -52,6 +51,8 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 'tweet': message,
               },
             );
+            final userFeed = _client.flatFeed('user', user.id!);
+            await userFeed.addActivity(activity);
 
             context.showSnackbar('Activity Posted...');
             _loadActivities();
