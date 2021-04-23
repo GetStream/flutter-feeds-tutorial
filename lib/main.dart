@@ -42,6 +42,10 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    /// Access Stream's Client via a provider.
+    final _client = context.client;
+
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 24.0),
@@ -66,7 +70,14 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: () async {
                       context.showSnackbar('Loading User');
 
-                      //TODO(awesome-developer): implement load
+                      /// Create a user on Stream using the id and dummy data
+                      /// consisting of the user's first, last and full name.
+                      /// See class [DummyAppUser] for more details.
+                      final _ = await _client.users.add(
+                        user.id!,
+                        user.data!,
+                        getOrCreate: true,
+                      );
 
                       context.showSnackbar('User Loaded');
 
