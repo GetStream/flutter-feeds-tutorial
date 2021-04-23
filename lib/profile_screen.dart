@@ -1,12 +1,16 @@
 import 'package:feeds_tutorial/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:stream_feed/stream_feed.dart';
 
 import 'add_activity_dialog.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({
     Key? key,
+    required this.streamUser,
   }) : super(key: key);
+
+  final User streamUser;
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
