@@ -19,6 +19,7 @@ class PeopleScreen extends StatefulWidget {
 class _PeopleScreenState extends State<PeopleScreen> {
   @override
   Widget build(BuildContext context) {
+    final _client = context.client;
     final users = List<DummyAppUser>.from(DummyAppUser.values)
       ..removeWhere((it) => it.id == widget.streamUser.id);
 
@@ -54,7 +55,12 @@ class _PeopleScreenState extends State<PeopleScreen> {
                 if (result != null) {
                   context.showSnackbar('Following User...');
 
-                  //TODO(awesome-developer): Implement Follow action.
+                  final currentUserFeed = _client.flatFeed(
+                    'timeline',
+                    widget.streamUser.id!,
+                  );
+                  final selectedUserFeed = _client.flatFeed('user', user.id!);
+                  await currentUserFeed.follow(selectedUserFeed);
 
                   context.showSnackbar('Followed User...');
                 }
