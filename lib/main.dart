@@ -1,24 +1,34 @@
 import 'package:feeds_tutorial/dummy_app_user.dart';
 import 'package:feeds_tutorial/utils/utils.dart';
 import 'package:flutter/material.dart';
+import 'package:stream_feed/stream_feed.dart';
 
 import 'home.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
+
   final _key = String.fromEnvironment('key');
   final _secret = String.fromEnvironment('secret');
-  runApp(MyApp());
+  final _client = StreamClient.connect(_key, secret: _secret);
+
+  runApp(MyApp(client: _client));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({Key? key, required this.client}) : super(key: key);
+
+  final StreamClient client;
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Stream Feed Demo',
       home: LoginScreen(),
+      builder: (context, child) => ClientProvider(
+        client: client,
+        child: child!,
+      ),
     );
   }
 }
