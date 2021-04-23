@@ -19,7 +19,8 @@ class PeopleScreen extends StatefulWidget {
 class _PeopleScreenState extends State<PeopleScreen> {
   @override
   Widget build(BuildContext context) {
-    final users = List<DummyAppUser>.from(DummyAppUser.values);
+    final users = List<DummyAppUser>.from(DummyAppUser.values)
+      ..removeWhere((it) => it.id == widget.streamUser.id);
 
     final followDialog = CupertinoAlertDialog(
       title: Text('Follow User?'),
