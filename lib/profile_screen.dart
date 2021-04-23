@@ -32,6 +32,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final user = widget.streamUser;
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -43,6 +44,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             context.showSnackbar('Posting Activity...');
 
             // TODO(awesome-developer): Implement posting
+            final activity = Activity(
+              actor: user.id,
+              verb: 'tweet',
+              object: '1',
+              extraData: {
+                'tweet': message,
+              },
+            );
 
             context.showSnackbar('Activity Posted...');
             _loadActivities();
