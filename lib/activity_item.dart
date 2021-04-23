@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:stream_feed/stream_feed.dart';
 
 class ActivityCard extends StatelessWidget {
-  const ActivityCard({Key? key}) : super(key: key);
+  const ActivityCard({
+    Key? key,
+    required this.activity,
+  }) : super(key: key);
+
+  final Activity activity;
 
   @override
   Widget build(BuildContext context) {
