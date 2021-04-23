@@ -17,6 +17,8 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  late final StreamClient _client;
+
   Future<void> _loadActivities({bool pullToRefresh = false}) async {
     //TODO(awesome-developer): Implement load activities
   }
@@ -24,6 +26,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void didChangeDependencies() {
     super.didChangeDependencies();
+    _client = context.client;
     _loadActivities();
   }
 
