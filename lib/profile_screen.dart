@@ -26,9 +26,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Future<void> _loadActivities({bool pullToRefresh = false}) async {
     if (!pullToRefresh) setState(() => _isLoading = true);
 
-    final userFeed = _client.flatFeed('user', widget.streamUser.id!);
+    final userFeed = _client.flatFeed('user');
     final data = await userFeed.getActivities();
     if (!pullToRefresh) _isLoading = false;
+    data.isNotEmpty ? print('YESSS') : print('NOOOO');
     setState(() => activities = data);
   }
 
@@ -42,6 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final user = widget.streamUser;
+    print(activities);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
@@ -53,14 +55,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             context.showSnackbar('Posting Activity...');
 
             final activity = Activity(
-              actor: user.id,
+              actor: createUserReference(user.id!),
               verb: 'tweet',
               object: '1',
               extraData: {
                 'tweet': message,
               },
             );
-            final userFeed = _client.flatFeed('user', user.id!);
+            final userFeed = _client.flatFeed('user');
             await userFeed.addActivity(activity);
 
             context.showSnackbar('Activity Posted...');

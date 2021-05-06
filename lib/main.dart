@@ -8,9 +8,9 @@ import 'home.dart';
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
 
-  final _key = String.fromEnvironment('key');
-  final _secret = String.fromEnvironment('secret');
-  final _client = StreamClient.connect(_key, secret: _secret);
+  final _client = StreamClient.connect("ay57s8swfnan",
+      token: Token(
+          "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoibmVldmFzaC1yYW1kaWFsIn0.yKqSehu_O5WJGh3-aa5qipnBRs7Qtue-1T9TZhT2ejw"));
 
   runApp(MyApp(client: _client));
 }
@@ -73,11 +73,9 @@ class _LoginScreenState extends State<LoginScreen> {
                       /// Create a user on Stream using the id and dummy data
                       /// consisting of the user's first, last and full name.
                       /// See class [DummyAppUser] for more details.
-                      final _user = await _client.users.add(
-                        user.id!,
-                        user.data!,
-                        getOrCreate: true,
-                      );
+                      print("ADDING USER ${user.name}");
+                      final _user =
+                          await _client.setUser(user.data!);
 
                       context.showSnackbar('User Loaded');
 

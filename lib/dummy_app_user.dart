@@ -1,3 +1,5 @@
+import 'package:stream_feed/stream_feed.dart';
+
 enum DummyAppUser {
   sahil,
   sacha,
@@ -11,6 +13,16 @@ extension DummyAppUserX on DummyAppUser {
         DummyAppUser.sahil: 'sahil-kumar',
         DummyAppUser.sacha: 'sacha-arbonel',
         DummyAppUser.nash: 'neevash-ramdial',
+      }[this];
+
+  /// Convenient method Extension to generate a [token] from [DummyAppUser] enum
+  Token? get token => <DummyAppUser, Token>{
+        DummyAppUser.sahil: Token(
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic2FoaWwta3VtYXIifQ.d6RW5eZedEl949w-IeZ40Ukji3yXfFnMw3baLsow028'),
+        DummyAppUser.sacha: Token(
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoic2FjaGEtYXJib25lbCJ9.fzDKEyiQ40J4YYgtZxpeQhn6ajX-GEnKZOOmcb-xa7M'),
+        DummyAppUser.nash: Token(
+            'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjoibmVldmFzaC1yYW1kaWFsIn0.yKqSehu_O5WJGh3-aa5qipnBRs7Qtue-1T9TZhT2ejw'),
       }[this];
 
   /// Convenient method Extension to generate a [name] from [DummyAppUser] enum

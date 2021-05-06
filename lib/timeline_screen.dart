@@ -22,7 +22,7 @@ class _TimelineScreenState extends State<TimelineScreen> {
 
   Future<void> _loadActivities({bool pullToRefresh = false}) async {
     if (!pullToRefresh) setState(() => _isLoading = true);
-    final userFeed = _client.flatFeed('timeline', widget.streamUser.id!);
+    final userFeed = _client.flatFeed('timeline');
     final data = await userFeed.getActivities();
     if (!pullToRefresh) _isLoading = false;
     setState(() => activities = data);
