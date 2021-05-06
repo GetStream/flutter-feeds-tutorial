@@ -43,7 +43,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     final user = widget.streamUser;
-    print(activities);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
