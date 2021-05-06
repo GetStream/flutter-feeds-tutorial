@@ -11,7 +11,7 @@ class ActivityCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final user =
-        DummyAppUser.values.firstWhere((it) => it.id == activity.actor);
+        DummyAppUser.values.firstWhere((it) => it.id == activity.origin);
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
       child: Column(
