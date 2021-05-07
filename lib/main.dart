@@ -4,31 +4,19 @@ import 'package:flutter/material.dart';
 import 'package:stream_feed/stream_feed.dart';
 
 import 'home.dart';
+import 'utils/utils.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-
-  final _key = String.fromEnvironment('key');
-  final _secret = String.fromEnvironment('secret');
-  final _client = StreamClient.connect(_key, secret: _secret);
-
-  runApp(MyApp(client: _client));
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key, required this.client}) : super(key: key);
-
-  final StreamClient client;
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Stream Feed Demo',
       home: LoginScreen(),
-      builder: (context, child) => ClientProvider(
-        client: client,
-        child: child!,
-      ),
     );
   }
 }
@@ -42,9 +30,6 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-
-    /// Access Stream's Client via a provider.
-    final _client = context.client;
 
     return Scaffold(
       body: Padding(
@@ -73,17 +58,20 @@ class _LoginScreenState extends State<LoginScreen> {
                       /// Create a user on Stream using the id and dummy data
                       /// consisting of the user's first, last and full name.
                       /// See class [DummyAppUser] for more details.
-                      final _user = await _client.users.add(
-                        user.id!,
-                        user.data!,
-                        getOrCreate: true,
-                      );
+                      print("ADDING USER ${user.name}");
+                      final _client = StreamClient.connect("ay57s8swfnan",
+                          token: user.token);
+
+                      final _user = await _client.setUser(user.data!);
 
                       context.showSnackbar('User Loaded');
 
                       Navigator.of(context).pushReplacement(
                         MaterialPageRoute(
-                          builder: (_) => HomeScreen(streamUser: _user),
+                          builder: (_) => ClientProvider(
+                            client: _client,
+                            child: HomeScreen(streamUser: _user),
+                          ),
                         ),
                       );
                     },
