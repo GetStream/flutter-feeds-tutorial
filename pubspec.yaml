@@ -11,10 +11,7 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  stream_feed:
-    git:
-      url: https://github.com/GetStream/stream-feed-flutter.git
-      path: ./packages/stream_feed
+  stream_feed: 0.1.1
   timeago: ^3.0.2
   cupertino_icons: ^1.0.2
 
