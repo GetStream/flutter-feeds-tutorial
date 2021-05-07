@@ -53,7 +53,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             context.showSnackbar('Posting Activity...');
 
             final activity = Activity(
-              actor: user.id,
+              actor: createUserReference(user.id!),
               verb: 'tweet',
               object: '1',
               extraData: {
