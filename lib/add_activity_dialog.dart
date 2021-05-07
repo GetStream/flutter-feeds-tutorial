@@ -24,12 +24,15 @@ class _AddActivityDialogState extends State<AddActivityDialog> {
               ),
             ),
             SizedBox(height: 12),
-            RaisedButton(
+            ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateColor.resolveWith((states) => Colors.blue),
+              ),
               onPressed: () {
                 final message = _activityController.text;
                 Navigator.pop<String>(context, message);
               },
-              color: Colors.blue,
               child: Text(
                 'POST ACTIVITY',
                 style: TextStyle(

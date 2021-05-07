@@ -7,8 +7,7 @@ class ClientProvider extends InheritedWidget {
     Key? key,
     required this.client,
     required Widget child,
-  })   : assert(child != null),
-        super(key: key, child: child);
+  }) : super(key: key, child: child);
 
   final StreamClient client;
 

@@ -51,7 +51,19 @@ class _LoginScreenState extends State<LoginScreen> {
               for (final user in DummyAppUser.values)
                 Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: RaisedButton(
+                  child: ElevatedButton(
+                    style: ButtonStyle(
+                      backgroundColor: MaterialStateColor.resolveWith(
+                          (states) => Colors.white),
+                      padding: MaterialStateProperty.all(
+                        const EdgeInsets.symmetric(horizontal: 4.0),
+                      ),
+                      shape: MaterialStateProperty.all(
+                        RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(24.0),
+                        ),
+                      ),
+                    ),
                     onPressed: () async {
                       context.showSnackbar('Loading User');
 
@@ -75,11 +87,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       );
                     },
-                    padding: const EdgeInsets.symmetric(horizontal: 4.0),
-                    color: Colors.white,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(24.0),
-                    ),
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 36.0, horizontal: 24.0),

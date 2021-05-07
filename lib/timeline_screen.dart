@@ -29,7 +29,7 @@ class _TimelineScreenState extends State<TimelineScreen> {
           child: Column(
             children: [
               Text('No activities yet!'),
-              RaisedButton(
+              ElevatedButton(
                 onPressed: _loadActivities,
                 child: Text('Reload'),
               )
