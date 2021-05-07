@@ -71,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       /// consisting of the user's first, last and full name.
                       /// See class [DummyAppUser] for more details.
                       print("ADDING USER ${user.name}");
-                      final _client = StreamClient.connect("ay57s8swfnan",
+                      final _client = StreamFeedClient.connect("ay57s8swfnan",
                           token: user.token);
 
                       final _user = await _client.setUser(user.data!);
@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         MaterialPageRoute(
                           builder: (_) => ClientProvider(
                             client: _client,
-                            child: HomeScreen(streamUser: _user),
+                            child: HomeScreen(),
                           ),
                         ),
                       );
