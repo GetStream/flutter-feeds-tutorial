@@ -10,9 +10,9 @@ enum DummyAppUser {
 extension DummyAppUserX on DummyAppUser {
   /// Convenient method Extension to generate an [id] from [DummyAppUser] enum
   String? get id => {
-        DummyAppUser.sahil: 'SU:sahil-kumar',
-        DummyAppUser.sacha: 'SU:sacha-arbonel',
-        DummyAppUser.nash: 'SU:neevash-ramdial',
+        DummyAppUser.sahil: 'sahil-kumar',
+        DummyAppUser.sacha: 'sacha-arbonel',
+        DummyAppUser.nash: 'neevash-ramdial',
       }[this];
 
   /// Convenient method Extension to generate a [token] from [DummyAppUser] enum
