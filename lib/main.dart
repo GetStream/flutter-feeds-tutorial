@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         MaterialPageRoute(
                           builder: (_) => ClientProvider(
                             client: _client,
-                            child: HomeScreen(),
+                            child: HomeScreen(streamUser: _user),
                           ),
                         ),
                       );

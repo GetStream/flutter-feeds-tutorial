@@ -18,7 +18,7 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  late final StreamClient _client;
+  late final StreamFeedClient _client;
   bool _isLoading = true;
 
   List<Activity> activities = <Activity>[];
