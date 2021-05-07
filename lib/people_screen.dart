@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:stream_feed/stream_feed.dart';
 
+import 'dummy_app_user.dart';
+
 class PeopleScreen extends StatefulWidget {
   const PeopleScreen({
     Key? key,
@@ -21,7 +23,7 @@ class _PeopleScreenState extends State<PeopleScreen> {
   Widget build(BuildContext context) {
     final _client = context.client;
     final users = List<DummyAppUser>.from(DummyAppUser.values)
-      ..removeWhere((it) => it.id == widget.streamUser.id);
+      ..removeWhere((it) => it.id! == widget.streamUser.id!);
 
     final followDialog = CupertinoAlertDialog(
       title: Text('Follow User?'),
@@ -54,11 +56,7 @@ class _PeopleScreenState extends State<PeopleScreen> {
                 );
                 if (result != null) {
                   context.showSnackbar('Following User...');
-
-                  final currentUserFeed = _client.flatFeed(
-                    'timeline',
-                    widget.streamUser.id!,
-                  );
+                  final currentUserFeed = _client.flatFeed('timeline');
                   final selectedUserFeed = _client.flatFeed('user', user.id!);
                   await currentUserFeed.follow(selectedUserFeed);
 
