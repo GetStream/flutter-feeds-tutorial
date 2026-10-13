@@ -1,3 +1,5 @@
+> **This repository is archived and will be deleted.** It is no longer maintained. For a current alternative, see [stream-feeds-flutter-tutorial](https://github.com/GetStream/stream-feeds-flutter-tutorial).
+
 ![](./images/flutter_cover_image.png)
 
 This repository is a companion to [Stream’s Flutter Feeds tutorial](https://getstream.io/activity-feed/sdk/flutter/tutorial/). By the end of this tutorial, developers will learn how to set up a timeline feed, follow other feeds and post new activities.
